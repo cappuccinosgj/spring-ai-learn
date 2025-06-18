@@ -1,0 +1,63 @@
+### 流式聊天接口（无记忆）
+GET http://localhost:8085/api/qwen/chat?userInput=你好，请问你是谁
+Accept: application/json
+
+###
+
+### 带Token统计的聊天接口
+GET http://localhost:8085/api/qwen/chatWithMetric?userInput=请解释一下人工智能的发展历程
+Accept: text/plain
+
+###
+
+### 获取AI Token使用统计
+GET http://localhost:8085/metrics/ai-tokens
+Accept: application/json
+
+###
+
+### 获取AI Token费用统计
+GET http://localhost:8085/metrics/ai-cost
+Accept: application/json
+
+###
+
+### 获取所有metrics（通过Actuator）
+GET http://localhost:8085/actuator/metrics
+Accept: application/json
+
+###
+
+### 获取通义千问Prompt Token统计
+GET http://localhost:8085/actuator/metrics/ai.qwen.prompt.tokens
+Accept: application/json
+
+###
+
+### 获取通义千问Completion Token统计
+GET http://localhost:8085/actuator/metrics/ai.qwen.completion.tokens
+Accept: application/json
+
+###
+
+### 获取通义千问Total Token统计
+GET http://localhost:8085/actuator/metrics/ai.qwen.total.tokens
+Accept: application/json
+
+###
+
+### 获取应用健康状态
+GET http://localhost:8085/actuator/health
+Accept: application/json
+
+###
+
+### 测试流式聊天（长文本）
+GET http://localhost:8085/api/qwen/chat?userInput=请详细介绍Spring AI框架的主要特性和使用场景
+Accept: application/json
+
+###
+
+### 测试Token统计（长文本）
+GET http://localhost:8085/api/qwen/chatWithMetric?userInput=请写一个关于机器学习的详细介绍，包括监督学习、无监督学习和强化学习的区别
+Accept: text/plain
