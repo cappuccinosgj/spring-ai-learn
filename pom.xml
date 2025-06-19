@@ -24,6 +24,7 @@
     <modules>
 
         <module>spring-ai-chat</module>
+        <module>spring-ai-chat-memory</module>
     </modules>
 
     <!--4. 配置属性 -->

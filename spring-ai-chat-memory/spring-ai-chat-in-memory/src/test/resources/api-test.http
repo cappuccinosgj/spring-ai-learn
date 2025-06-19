@@ -1,0 +1,69 @@
+### Spring AI Chat In-Memory API 测试文件
+### 基于 Spring AI 1.0 的内存聊天记忆功能模块
+
+### 1. 基础聊天接口（无记忆）
+GET http://localhost:8086/api/memory/chat?userInput=你好，请问你是谁？
+
+### 2. 流式聊天接口（无记忆）
+GET http://localhost:8086/api/memory/chatStream?userInput=请介绍一下Spring AI框架
+
+### 3. 带记忆的聊天接口（默认会话ID：007）
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=我的名字是张三
+
+### 4. 带记忆的聊天接口（指定会话ID）
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=你还记得我的名字吗？&conversationId=007
+
+### 5. 带记忆和Token统计的聊天接口
+GET http://localhost:8086/api/memory/chatWithMemoryAndMetric?userInput=请解释一下人工智能的发展历程&conversationId=session001
+
+### 6. AI Token使用统计
+GET http://localhost:8086/metrics/ai-tokens
+
+### 7. AI Token费用统计
+GET http://localhost:8086/metrics/ai-cost
+
+### 8. Actuator 监控端点
+
+### 8.1 应用健康状态
+GET http://localhost:8086/actuator/health
+
+### 8.2 所有监控指标
+GET http://localhost:8086/actuator/metrics
+
+### 8.3 特定指标 - Prompt Token统计
+GET http://localhost:8086/actuator/metrics/ai.memory.prompt.tokens
+
+### 8.4 特定指标 - Completion Token统计
+GET http://localhost:8086/actuator/metrics/ai.memory.completion.tokens
+
+### 8.5 特定指标 - Total Token统计
+GET http://localhost:8086/actuator/metrics/ai.memory.total.tokens
+
+### 9. 长文本对话测试
+
+### 9.1 长文本聊天（带记忆）
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=请详细介绍一下Spring框架的核心特性，包括依赖注入、面向切面编程、事务管理等方面的内容，并说明它们在实际开发中的应用场景&conversationId=longtext001
+
+### 9.2 长文本流式聊天
+GET http://localhost:8086/api/memory/chatStream?userInput=请分析一下当前人工智能技术的发展趋势，包括大语言模型、计算机视觉、自然语言处理等领域的最新进展，以及它们对未来社会发展可能产生的影响
+
+### 10. 多会话测试
+
+### 10.1 会话A - 第一轮对话
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=我是一名Java开发工程师&conversationId=sessionA
+
+### 10.2 会话B - 第一轮对话
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=我是一名Python开发工程师&conversationId=sessionB
+
+### 10.3 会话A - 第二轮对话
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=你还记得我的职业吗？&conversationId=sessionA
+
+### 10.4 会话B - 第二轮对话
+GET http://localhost:8086/api/memory/chatWithMemory?userInput=你还记得我的职业吗？&conversationId=sessionB
+
+### 注意事项：
+### 1. 确保应用已启动在 8086 端口
+### 2. 确保已配置 DASHSCOPE_API_KEY 环境变量
+### 3. 流式接口返回的是 JSON 格式的流数据
+### 4. 聊天记忆功能基于 Spring AI 的 MessageWindowChatMemory 实现
+### 5. Token统计需要先进行聊天对话才会有数据
